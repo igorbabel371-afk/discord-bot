@@ -15,7 +15,11 @@ client.once('ready', () => {
   console.log(`Bot działa jako ${client.user.tag}`);
 });
 
-client.on('messageCreate', async message => {
+  client.on('messageCreate', async message => {
+
+  if (message.author.bot) return;
+
+  if (message.content === "!produkty") {
 
   if (message.content === "!produkty") {
 
@@ -53,6 +57,11 @@ client.on('messageCreate', async message => {
 });
 
 client.on('interactionCreate', async interaction => {
+
+  if (!interaction.isStringSelectMenu()) return;
+  if (interaction.customId !== "kategorie") return;
+
+  if (interaction.values[0] === "discord") {
 
   if (!interaction.isStringSelectMenu()) return;
 
@@ -116,5 +125,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
