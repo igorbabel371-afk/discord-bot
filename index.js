@@ -123,6 +123,7 @@ ephemeral: true
 });
 
 console.log("PRÓBA LOGOWANIA");
+
 client.login(process.env.TOKEN)
 .then(() => console.log("LOGIN OK"))
 .catch(err => console.error("LOGIN ERROR:", err));
@@ -136,5 +137,6 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
