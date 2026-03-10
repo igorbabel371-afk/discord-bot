@@ -12,7 +12,13 @@ const client = new Client({
 });
 
 client.once("ready", () => {
-  console.log("BOT ZALOGOWANY jako " + client.user.tag);
+console.log("BOT ZALOGOWANY jako " + client.user.tag);
+});
+
+client.on("error", console.error);
+client.on("warn", console.warn);
+
+client.on("interactionCreate", async interaction => {
 });
 
 /* ===== INTERACTIONS ===== */
@@ -106,3 +112,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Serwer działa na porcie " + PORT);
 });
+
