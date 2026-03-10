@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 
-const { 
-Client, 
-GatewayIntentBits, 
-ActionRowBuilder, 
-StringSelectMenuBuilder, 
-EmbedBuilder 
+const {
+Client,
+GatewayIntentBits,
+ActionRowBuilder,
+StringSelectMenuBuilder,
+EmbedBuilder
 } = require("discord.js");
 
 const client = new Client({
@@ -70,12 +70,15 @@ if (interaction.values[0] === "discord") {
 const embed = new EmbedBuilder()
 .setTitle("Produkty Discord")
 .setDescription(`
-• Discord Nitro — **30 zł / 1 miesiąc**
-• Server Boosty — **25 zł / 14 boost / miesiąc**
-• Discord Members — **18 zł / 500 members**
+• Discord Nitro — **30 zł / miesiąc**
+• Server Boosty — **25 zł / boost**
+• Members — **18 zł / 500**
 `);
 
-await interaction.reply({ embeds: [embed], ephemeral: true });
+await interaction.reply({
+embeds: [embed],
+ephemeral: true
+});
 
 }
 
@@ -84,14 +87,16 @@ if (interaction.values[0] === "streaming") {
 const embed = new EmbedBuilder()
 .setTitle("Streaming")
 .setDescription(`
-• Netflix — **20 zł / 1 miesiąc**
-• Disney+ — **15 zł / 1 miesiąc**
-• HBO Max — **15 zł / 1 miesiąc**
-• Paramount+ — **18 zł / 1 miesiąc**
-• YouTube Premium — **17 zł / 1 miesiąc**
+• Disney+ — **21 zł / miesiąc**
+• HBO Max — **15 zł / miesiąc**
+• Paramount+ — **18 zł / miesiąc**
+• YouTube Premium — **17 zł / miesiąc**
 `);
 
-await interaction.reply({ embeds: [embed], ephemeral: true });
+await interaction.reply({
+embeds: [embed],
+ephemeral: true
+});
 
 }
 
@@ -106,13 +111,16 @@ const embed = new EmbedBuilder()
 • Case Paradise **15 titan — 100 zł**
 `);
 
-await interaction.reply({ embeds: [embed], ephemeral: true });
+await interaction.reply({
+embeds: [embed],
+ephemeral: true
+});
 
 }
 
 });
 
-client.login("MTQ4MDI0NDIyNjc1ODU0MTUxNQ.G2AAWO.89p_93ocSV9PcuEa88thoJnh5QYxSUsns6uCeQ")
+client.login(process.env.TOKEN)
 .then(() => console.log("LOGIN OK"))
 .catch(err => console.error("LOGIN ERROR:", err));
 
@@ -125,5 +133,3 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
-
-
