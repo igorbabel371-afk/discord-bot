@@ -5,8 +5,10 @@ app.get("/", (req, res) => {
   res.send("Bot działa");
 });
 
-app.listen(3000, () => {
-  console.log("Serwer działa");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Serwer dziala na porcie " + PORT);
 });
 
 const { Client, GatewayIntentBits, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder } = require('discord.js');
@@ -112,3 +114,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(process.env.TOKEN);
+
