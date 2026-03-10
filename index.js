@@ -113,7 +113,11 @@ client.on('interactionCreate', async interaction => {
 
 });
 
+});
+
+console.log("BOT STARTUJE");
 console.log("TOKEN:", process.env.TOKEN);
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch(console.error);
+
 
