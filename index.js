@@ -92,13 +92,13 @@ if (interaction.values[0] === "roblox") {
 const embed = new EmbedBuilder()
 .setTitle("Cennik Roblox")
 .setDescription(`
-• Case Paradise **1 titan — 7 zł**
+• Case Paradise **1 titan – 7 zł**
 
-• Case Paradise **5 titan — 35 zł**
+• Case Paradise **5 titan – 35 zł**
 
-• Case Paradise **10 titan — 70 zł**
+• Case Paradise **10 titan – 70 zł**
 
-• Case Paradise **15 titan — 100 zł**
+• Case Paradise **15 titan – 100 zł**
 `);
 
 return interaction.update({
@@ -118,6 +118,7 @@ components: []
 
 console.log("TOKEN length:", process.env.TOKEN ? process.env.TOKEN.length : "BRAK");
 console.log("TOKEN first chars:", process.env.TOKEN ? process.env.TOKEN.slice(0,5) : "BRAK");
+
 console.log("PRÓBA LOGOWANIA");
 
 client.login(process.env.TOKEN)
