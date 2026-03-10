@@ -1,7 +1,10 @@
-console.log("START PROGRAMU");
+console.log("TOKEN length:", process.env.TOKEN ? process.env.TOKEN.length : "BRAK");
+console.log("TOKEN first chars:", process.env.TOKEN ? process.env.TOKEN.slice(0, 5) : "BRAK");
 
-const express = require("express");
-const app = express();
+console.log("PRÓBA LOGOWANIA");
+client.login(process.env.TOKEN)
+  .then(() => console.log("LOGIN OK"))
+  .catch(err => console.error("LOGIN ERROR:", err));
 
 const {
 Client,
@@ -137,6 +140,7 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
 
