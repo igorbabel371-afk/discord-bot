@@ -1,3 +1,5 @@
+console.log("START BOTA");
+
 const express = require("express");
 const app = express();
 
@@ -133,3 +135,4 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
