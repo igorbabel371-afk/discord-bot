@@ -112,17 +112,13 @@ components: []
 
 }
 
-}
+});
 
 /* ===== LOGIN ===== */
 
 console.log("PRÓBA LOGOWANIA...");
 
 client.login(process.env.TOKEN);
-
-client.on("ready", () => {
-console.log("BOT ZALOGOWANY jako " + client.user.tag);
-});
 
 /* ===== SERVER (Render) ===== */
 
@@ -135,7 +131,3 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
-
-
-
-
