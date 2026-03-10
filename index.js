@@ -124,6 +124,7 @@ console.log("PRÓBA LOGOWANIA");
 (async () => {
 try {
 
+console.log("TOKEN:", process.env.TOKEN ? "JEST" : "BRAK");
 console.log("PRÓBA LOGOWANIA...");
 
 client.login(process.env.TOKEN);
@@ -139,5 +140,6 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
