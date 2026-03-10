@@ -1,3 +1,14 @@
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot działa");
+});
+
+app.listen(3000, () => {
+  console.log("Serwer działa");
+});
+
 const { Client, GatewayIntentBits, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
@@ -8,7 +19,7 @@ const client = new Client({
   ]
 });
 
-client.once('clientReady', () => {
+client.once('ready', () => {
   console.log(`Bot działa jako ${client.user.tag}`);
 });
 
