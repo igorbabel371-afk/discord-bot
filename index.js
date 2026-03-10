@@ -112,22 +112,17 @@ components: []
 
 }
 
-});
+}
 
 /* ===== LOGIN ===== */
 
-console.log("TOKEN length:", process.env.TOKEN ? process.env.TOKEN.length : "BRAK");
-console.log("TOKEN first chars:", process.env.TOKEN ? process.env.TOKEN.slice(0,5) : "BRAK");
-
-console.log("PRÓBA LOGOWANIA");
-
-(async () => {
-try {
-
-console.log("TOKEN:", process.env.TOKEN ? "JEST" : "BRAK");
 console.log("PRÓBA LOGOWANIA...");
 
 client.login(process.env.TOKEN);
+
+client.on("ready", () => {
+console.log("BOT ZALOGOWANY jako " + client.user.tag);
+});
 
 /* ===== SERVER (Render) ===== */
 
@@ -140,6 +135,7 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
 
