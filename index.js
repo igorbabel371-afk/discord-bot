@@ -126,16 +126,7 @@ try {
 
 console.log("PRÓBA LOGOWANIA...");
 
-await client.login(process.env.TOKEN);
-
-console.log("LOGIN OK");
-
-} catch (err) {
-
-console.error("LOGIN ERROR:", err);
-
-}
-})();
+client.login(process.env.TOKEN);
 
 /* ===== SERVER (Render) ===== */
 
@@ -148,4 +139,5 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
