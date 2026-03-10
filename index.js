@@ -21,9 +21,7 @@ client.once('ready', () => {
 
   if (message.content === "!produkty") {
 
-  if (message.content === "!produkty") {
-
-    const embed = new EmbedBuilder()
+   const embed = new EmbedBuilder()
       .setTitle("📦 Sklep")
       .setDescription("Wybierz kategorię produktów");
 
@@ -60,10 +58,6 @@ client.on('interactionCreate', async interaction => {
 
   if (!interaction.isStringSelectMenu()) return;
   if (interaction.customId !== "kategorie") return;
-
-  if (interaction.values[0] === "discord") {
-
-  if (!interaction.isStringSelectMenu()) return;
 
   if (interaction.values[0] === "discord") {
 
@@ -125,6 +119,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Serwer działa na porcie " + PORT);
 });
+
 
 
 
