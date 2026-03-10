@@ -100,10 +100,6 @@ client.on('interactionCreate', async interaction => {
 
 });
 
-client.on("ready", () => {
-  console.log(`Bot dziala jako ${client.user.tag}`);
-});
-
 console.log("BOT STARTUJE");
 console.log("TOKEN:", process.env.TOKEN);
 
@@ -112,9 +108,4 @@ console.log("PROBUJE SIE ZALOGOWAC...");
 client.login(process.env.TOKEN)
   .then(() => console.log("LOGIN OK"))
   .catch(err => console.error("LOGIN ERROR:", err));
-
-
-
-
-
 
