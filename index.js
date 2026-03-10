@@ -112,7 +112,7 @@ await interaction.reply({ embeds: [embed], ephemeral: true });
 
 });
 
-client.login("MTQ4MDI0NDIyNjc1ODU0MTUxNQ.GwUQCm.6DnE5fKGcaA678K08ZPglqThMULuBFrxuKNYhM")
+client.login("MTQ4MDI0NDIyNjc1ODU0MTUxNQ.G2AAWO.89p_93ocSV9PcuEa88thoJnh5QYxSUsns6uCeQ")
 .then(() => console.log("LOGIN OK"))
 .catch(err => console.error("LOGIN ERROR:", err));
 
@@ -125,4 +125,5 @@ res.send("Bot działa");
 app.listen(PORT, () => {
 console.log("Serwer działa na porcie " + PORT);
 });
+
 
