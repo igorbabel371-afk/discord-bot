@@ -1,3 +1,6 @@
+const express = require("express");
+const app = express();
+
 const { Client, GatewayIntentBits, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
@@ -100,12 +103,18 @@ client.on('interactionCreate', async interaction => {
 
 });
 
-console.log("BOT STARTUJE");
-console.log("TOKEN:", process.env.TOKEN);
-
-console.log("PROBUJE SIE ZALOGOWAC...");
-
 client.login(process.env.TOKEN)
-  .then(() => console.log("LOGIN OK"))
-  .catch(err => console.error("LOGIN ERROR:", err));
+.then(() => console.log("LOGIN OK"))
+.catch(err => console.error("LOGIN ERROR:", err));
+
+const PORT = process.env.PORT || 10000;
+
+app.get("/", (req, res) => {
+  res.send("Bot działa");
+});
+
+app.listen(PORT, () => {
+  console.log("Serwer działa na porcie " + PORT);
+});
+
 
