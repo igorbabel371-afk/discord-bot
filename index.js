@@ -1,133 +1,114 @@
-const {
-Client,
-GatewayIntentBits,
-EmbedBuilder,
-ActionRowBuilder,
-StringSelectMenuBuilder
-} = require("discord.js");
-
 const express = require("express");
 const app = express();
 
-console.log("START PROGRAMU");
+app.get("/", (req, res) => {
+  res.send("Bot działa");
+});
 
-/* ===== CLIENT ===== */
+app.listen(3000, () => {
+  console.log("Serwer działa");
+});
+
+const { Client, GatewayIntentBits, ActionRowBuilder, StringSelectMenuBuilder, EmbedBuilder } = require('discord.js');
 
 const client = new Client({
-intents: [GatewayIntentBits.Guilds]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
 });
 
-/* ===== READY ===== */
-
-client.once("ready", () => {
-console.log("BOT ZALOGOWANY jako " + client.user.tag);
+client.once('ready', () => {
+  console.log(`Bot działa jako ${client.user.tag}`);
 });
 
-/* ===== ERROR LOGS ===== */
+client.on('messageCreate', async message => {
 
-client.on("error", console.error);
-client.on("warn", console.warn);
+  if (message.content === "!produkty") {
 
-/* ===== INTERACTIONS ===== */
+    const embed = new EmbedBuilder()
+      .setTitle("📦 Sklep")
+      .setDescription("Wybierz kategorię produktów");
 
-client.on("interactionCreate", async interaction => {
+    const menu = new StringSelectMenuBuilder()
+      .setCustomId('kategorie')
+      .setPlaceholder('Wybierz kategorię')
+      .addOptions([
+        {
+          label: 'Produkty Discord',
+          value: 'discord',
+        },
+        {
+          label: 'Streaming',
+          value: 'streaming',
+        },
+        {
+          label: 'Roblox',
+          value: 'roblox',
+        }
+      ]);
 
-if (interaction.isChatInputCommand()) {
+    const row = new ActionRowBuilder().addComponents(menu);
 
-if (interaction.commandName === "cennik") {
+    await message.channel.send({
+      embeds: [embed],
+      components: [row]
+    });
 
-const menu = new StringSelectMenuBuilder()
-.setCustomId("cennik_menu")
-.setPlaceholder("Wybierz kategorię")
-.addOptions([
-{
-label: "Discord",
-value: "discord"
-},
-{
-label: "Roblox",
-value: "roblox"
-}
-]);
+  }
 
-const row = new ActionRowBuilder().addComponents(menu);
-
-return interaction.reply({
-content: "Wybierz kategorię:",
-components: [row],
-ephemeral: true
 });
 
-}
+client.on('interactionCreate', async interaction => {
 
-}
+  if (!interaction.isStringSelectMenu()) return;
 
-/* ===== MENU ===== */
+  if (interaction.values[0] === "discord") {
 
-if (interaction.isStringSelectMenu()) {
-
-if (interaction.customId === "cennik_menu") {
-
-if (interaction.values[0] === "discord") {
-
-const embed = new EmbedBuilder()
-.setTitle("Cennik Discord")
-.setDescription(`
-• Bot Discord **10 zł**
-
-• Bot Discord **20 zł**
-
-• Bot Discord **30 zł**
+    const embed = new EmbedBuilder()
+      .setTitle("Produkty Discord")
+      .setDescription(`
+• Discord Nitro — **30 zł / 1 miesiąc**  
+• Serwer Boosty — **25 zł / 14 boost / miesiąc**  
+• Discord Members — **18 zł / 500 members**
 `);
 
-return interaction.update({
-embeds: [embed],
-components: []
-});
+    await interaction.reply({ embeds: [embed], ephemeral: true });
 
-}
+  }
 
-if (interaction.values[0] === "roblox") {
+  if (interaction.values[0] === "streaming") {
 
-const embed = new EmbedBuilder()
-.setTitle("Cennik Roblox")
-.setDescription(`
-• Case Paradise **1 titan – 7 zł**
-
-• Case Paradise **5 titan – 35 zł**
-
-• Case Paradise **10 titan – 70 zł**
-
-• Case Paradise **15 titan – 100 zł**
+    const embed = new EmbedBuilder()
+      .setTitle("Streaming")
+      .setDescription(`
+• Netflix — **20 zł / 1 miesiąc**  
+• Disney+ — **15 zł / 1 miesiąc**  
+• HBO Max — **15 zł / 1 miesiąc**  
+• Paramount+ — **18 zł / 1 miesiąc**  
+• YouTube Premium — **17 zł / 1 miesiąc**
 `);
 
-return interaction.update({
-embeds: [embed],
-components: []
+    await interaction.reply({ embeds: [embed], ephemeral: true });
+
+  }
+
+  if (interaction.values[0] === "roblox") {
+
+    const embed = new EmbedBuilder()
+      .setTitle("Roblox")
+      .setDescription(`
+• case paradise **1 titan / 7 zł**  
+• case paradise **5 titan / 35 zł**  
+• case paradise **10 titan / 70 zł**  
+• case paradise **15 titan / 100 zł**
+`);
+
+    await interaction.reply({ embeds: [embed], ephemeral: true });
+
+  }
+
 });
-
-}
-
-}
-
-}
-
-});
-
-/* ===== LOGIN ===== */
-
-console.log("PRÓBA LOGOWANIA...");
 
 client.login(process.env.TOKEN);
-
-/* ===== SERVER (Render) ===== */
-
-const PORT = process.env.PORT || 10000;
-
-app.get("/", (req, res) => {
-res.send("Bot działa");
-});
-
-app.listen(PORT, () => {
-console.log("Serwer działa na porcie " + PORT);
-});
